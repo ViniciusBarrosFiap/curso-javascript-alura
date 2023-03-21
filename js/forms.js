@@ -4,12 +4,9 @@ addButton.addEventListener("click", function (event) {
 
     var form = document.querySelector("#form-adiciona")
 
-    var nome = form.nome.value
-    var peso = form.peso.value
-    var altura = form.altura.value
-    var gordura = form.gordura.value
-    
+    var paciente = getInfoForms(form)
 
+    //cria a tr e a td dos pacientes (linhas da tabela(tr), colunas da tabela(td))
     var pacienteTr = document.createElement("tr")
 
     var nomeTd = document.createElement("td")
@@ -31,7 +28,20 @@ addButton.addEventListener("click", function (event) {
 
     console.log(pacienteTr)
 
+    //Adicionando paciente na tabela
     var tabela = document.querySelector("#tabela-pacientes")
 
     tabela.appendChild(pacienteTr)
 })
+
+function getInfoForms(form) {
+
+    var paciente = {
+        nome: form.nome.value,
+        peso: form.peso.value,
+        altura: form.altura.value,
+        gordura: form.altura.value,
+        imc: calculaImc(form.peso.value, form.altura.value)
+    }
+    return paciente
+}
