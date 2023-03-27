@@ -15,7 +15,7 @@ for (var i = 0; i < pacientes.length; i++) {
     var imc = peso / (altura * altura)
 
     var pesoEhValido = validaPeso(peso) // true or false
-    var alturaEhValido = true
+    var alturaEhValido = validaAltura(altura)
 
     if (!pesoEhValido) {
         console.log("Peso inválido")
@@ -24,7 +24,7 @@ for (var i = 0; i < pacientes.length; i++) {
         paciente.classList.add("invalid__pacient")
     }
 
-    if (altura < 0 || altura > 3.0) {
+    if (!alturaEhValido) {
         console.log("Altura inválida")
         alturaEhValido = false
         tdImc.textContent = "Altura inválida"
@@ -43,6 +43,7 @@ function validaPeso (peso) {
     else{
         return false
     }
+}
 
 function validaAltura (altura){
     if(altura >= 0 && altura <= 3){
@@ -53,7 +54,6 @@ function validaAltura (altura){
     }
 }
 
-}
 function calculaImc(peso, altura) {
     var imc = 0
     var imc = peso / (altura * altura)

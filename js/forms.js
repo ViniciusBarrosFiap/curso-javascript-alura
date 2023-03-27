@@ -8,12 +8,30 @@ addButton.addEventListener("click", function (event) {
     //cria a tr e a td dos pacientes (linhas da tabela(tr), colunas da tabela(td))
     var pacienteTr = criaTr(paciente)
 
+    var erros = validaPaciente(paciente)
+    console.log(erros)
+    if(erros.length > 0) {
+        var mensagemErro = document.querySelector("#mensagens-erro")
+        mensagemErro.textContent = erros
+        return
+    }
+
     //Adicionando paciente na tabela
     var tabela = document.querySelector("#tabela-pacientes")
     tabela.appendChild(pacienteTr)
 
     form.reset()
 })
+
+function exibeMensagensDeErro (erros) {
+    var ul = document.querySelector("#mensagens-erro")
+    erros.forEach(function(erro) {
+        var li = document.createElement("li")
+        li.textContent = erro
+        ul.appendChild(li)
+    })
+    
+}
 
 // extrai informações do forms e cria um objeto paciente
 function getInfoForms(form) {
@@ -54,4 +72,18 @@ function montaTd(dado, classe) {
     td.textContent = dado
 
     return td
+}
+
+function validaPaciente (paciente) {
+
+    var erros = []
+
+    if(!validaPeso(paciente.peso)){
+        erros.push("Peso é inválido")
+    }
+    
+    if(!validaAltura(paciente.altura)){
+        erros.push("Altura é inválida")
+    }
+    return erros
 }
