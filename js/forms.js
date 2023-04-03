@@ -10,7 +10,7 @@ addButton.addEventListener("click", function (event) {
 
     var erros = validaPaciente(paciente)
     console.log(erros)
-    if(erros.length > 0) {
+    if (erros.length > 0) {
         var mensagemErro = document.querySelector("#mensagens-erro")
         mensagemErro.textContent = erros
         return
@@ -25,16 +25,16 @@ addButton.addEventListener("click", function (event) {
     mensagensErro.innerHTML = ""
 })
 
-function exibeMensagensDeErro (erros) {
+function exibeMensagensDeErro(erros) {
     var ul = document.querySelector("#mensagens-erro")
     ul.innerHTML = ""
 
-    erros.forEach(function(erro) {
+    erros.forEach(function (erro) {
         var li = document.createElement("li")
         li.textContent = erro
         ul.appendChild(li)
     })
-    
+
 }
 
 // extrai informações do forms e cria um objeto paciente
@@ -78,7 +78,7 @@ function montaTd(dado, classe) {
     return td
 }
 
-function validaPaciente (paciente) {
+function validaPaciente(paciente) {
 
     var erros = []
 
